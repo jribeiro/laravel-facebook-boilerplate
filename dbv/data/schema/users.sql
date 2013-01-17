@@ -1,0 +1,22 @@
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `nickname` varchar(45) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `gender` varchar(8) DEFAULT NULL,
+  `fullname` varchar(128) NOT NULL,
+  `firstname` varchar(64) NOT NULL,
+  `lastname` varchar(64) NOT NULL,
+  `img_url` varchar(256) DEFAULT NULL,
+  `access_token` varchar(256) DEFAULT NULL,
+  `mantra` varchar(512) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `provider_id` int(11) DEFAULT NULL,
+  `is_confirmed` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  KEY `provider_fk_idx` (`provider_id`),
+  CONSTRAINT `provider_fk` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`int`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
